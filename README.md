@@ -81,3 +81,95 @@ classDiagram
     Person <|-- Admin
     Search <|.. SearchIndex
     Member "1" *-- "1" Profile
+```
+
+2. "People You May Know" Graph Topology (2-Level BFS)
+
+The recommendation algorithm traverses the target user's direct friends (Level 1) to evaluate their friends (Level 2). Mutual connection intersections are aggregated to rank recommendations.
+graph LR
+    Target[Target Member: Ahmed] <-->|Direct Connection| L1_A(Mona - Level 1)
+    Target <-->|Direct Connection| L1_B(Ali - Level 1)
+    
+    L1_A <-->|Connection| L2_A(Sara - Level 2)
+    L1_A <-->|Mutual Path 1| Rec((Omar - Suggested Candidate))
+    L1_B <-->|Mutual Path 2| Rec
+    
+    style Rec fill:#2b82c5,color:#fff,stroke:#1a4971,stroke-width:2px
+
+3. Connection Suggestion Execution Flow
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Ahmed (Member)
+    participant M as Member Object
+    participant Graph as In-Memory Network Graph
+    
+    User->>M: searchMemberSuggestions()
+    M->>Graph: getMemberConnectionsById(Ahmed_ID)
+    Graph-->>M: [Mona, Ali] (Level 1 Connections)
+    
+    loop For each Level 1 Member
+        M->>Graph: getMemberConnectionsById(Mona_ID)
+        Graph-->>M: [Sara, Omar] (Level 2 Connections)
+        M->>M: findMemberSuggestion(Omar) -> Increment Frequency Count
+    end
+    
+    M-->>User: Ranked Vector of Candidates [(Omar, count: 2), (Sara, count: 1)]
+```
+4. High-Level Layered Architecture
+```mermaid
+graph TD
+    subgraph Client Layer
+        AdminRole[Admin Operations Module]
+        MemberRole[Member Operations Module]
+    end
+
+    subgraph Core Domain Layer
+        Account[Account & Person Base]
+        Entities[Page, Group, Post, Message]
+    end
+
+    subgraph In-Memory Data Layer
+        Registry[Member Registry Map]
+        GraphDB[(In-Memory Network Graph)]
+        SearchEngine[Search Index Engine]
+    end
+
+    AdminRole --> Account
+    MemberRole --> Entities
+    MemberRole --> GraphDB
+    MemberRole --> SearchEngine
+    Registry --> Account
+```
+📂 Directory Structure
+.
+├── Account.hpp                     # Abstract base class for security/credentials
+├── AccountStatus.hpp               # Account state enumeration
+├── Address.hpp                     # Value object for locations
+├── Admin.hpp                       # Administrative system operations
+├── Comment.hpp                     # Post comments entity
+├── ConnectionInvitation.hpp        # Connection invitation model & states
+├── ConnectionInvitationStatus.hpp  # Status enum for connection requests
+├── ForwardDeclarations.hpp         # System-wide type forward declarations
+├── Group.hpp                       # Member communities entity
+├── Member.hpp                      # Main user entity & BFS recommendation logic
+├── Message.hpp                     # Direct messaging entity
+├── Page.hpp                        # Public social pages entity
+├── Person.hpp                      # Personal details domain class
+├── Post.hpp                        # Content publishing model
+├── Profile.hpp                     # Member bio, work experience & history
+├── Recommendation.hpp              # Page recommendation reviews
+├── Search.hpp                      # Abstract search interface
+├── SearchIndex.hpp                 # In-memory search index implementation
+├── Work.hpp                        # Career profile entry
+├── main.cpp                        # Test suite and interactive scenario driver
+└── README.md                       # Project documentation
+
+🛠 Building & Running Small Facebook
+Prerequisites
+
+    A C++17 compatible compiler (g++ 7+, clang++ 5+, or MSVC 2017+)
+
+Direct Terminal Compilation
+    g++ -std=c++17 main.cpp -I. -o small_facebook
+    ./small_facebook
