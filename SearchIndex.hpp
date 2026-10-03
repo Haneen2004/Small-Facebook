@@ -15,13 +15,13 @@
 class SearchIndex : public Search
 {
 private:
-    unordered_map<string, vector<shared_ptr<Member>>> memberNames;
-    unordered_map<string, vector<shared_ptr<Group>>> groupNames;
-    unordered_map<string, vector<shared_ptr<Page>>> pageTitles;
-    unordered_map<string, vector<shared_ptr<Post>>> posts;
+    std::unordered_map<std::string, std::vector<std::shared_ptr<Member>>> memberNames;
+    std::unordered_map<std::string, std::vector<std::shared_ptr<Group>>> groupNames;
+    std::unordered_map<std::string, std::vector<std::shared_ptr<Page>>> pageTitles;
+    std::unordered_map<std::string, std::vector<std::shared_ptr<Post>>> posts;
 
 public:
-    bool addMember(const shared_ptr<Member> &member)
+    bool addMember(const std::shared_ptr<Member> &member)
     {
         if (member)
         {
@@ -31,7 +31,7 @@ public:
         return false;
     }
 
-    bool addGroup(const shared_ptr<Group> &group)
+    bool addGroup(const std::shared_ptr<Group> &group)
     {
         if (group)
         {
@@ -41,7 +41,7 @@ public:
         return false;
     }
 
-    bool addPage(const shared_ptr<Page> &page)
+    bool addPage(const std::shared_ptr<Page> &page)
     {
         if (page)
         {
@@ -51,7 +51,7 @@ public:
         return false;
     }
 
-    bool addPost(const shared_ptr<Post> &post)
+    bool addPost(const std::shared_ptr<Post> &post)
     {
         if (post)
         {
@@ -61,7 +61,7 @@ public:
         return false;
     }
 
-    vector<shared_ptr<Member>> searchMember(const string &name) override
+    std::vector<std::shared_ptr<Member>> searchMember(const std::string &name) override
     {
         auto it = memberNames.find(name);
         if (it != memberNames.end())
@@ -71,7 +71,7 @@ public:
         return {};
     }
 
-    vector<shared_ptr<Group>> searchGroup(const string &name) override
+    std::vector<std::shared_ptr<Group>> searchGroup(const std::string &name) override
     {
         auto it = groupNames.find(name);
         if (it != groupNames.end())
@@ -81,7 +81,7 @@ public:
         return {};
     }
 
-    vector<shared_ptr<Page>> searchPage(const string &title) override
+    std::vector<std::shared_ptr<Page>> searchPage(const std::string &title) override
     {
         auto it = pageTitles.find(title);
         if (it != pageTitles.end())
@@ -91,7 +91,7 @@ public:
         return {};
     }
 
-    vector<shared_ptr<Post>> searchPost(const string &word) override
+    std::vector<std::shared_ptr<Post>> searchPost(const std::string &word) override
     {
         auto it = posts.find(word);
         if (it != posts.end())
