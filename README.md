@@ -142,6 +142,7 @@ graph TD
     Registry --> Account
 ```
 📂 Directory Structure
+```text
 .
 ├── Account.hpp                     # Abstract base class for security/credentials
 ├── AccountStatus.hpp               # Account state enumeration
