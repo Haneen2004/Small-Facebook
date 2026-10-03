@@ -5,25 +5,24 @@
 #include <string>
 #include <vector>
 #include <ctime>
-using namespace std;
 
 class Recommendation
 {
 private:
     int recommendationId{0};
     int rating{0};
-    string description;
+    std::string description;
     time_t createdAt{time(nullptr)};
-    vector<string> activeJobPostings;
+    std::vector<std::string> activeJobPostings;
 
 public:
     Recommendation() = default;
 
     int getRecommendationId() const { return recommendationId; }
     int getRating() const { return rating; }
-    string getDescription() const { return description; }
+    std::string getDescription() const { return description; }
     time_t getCreatedAt() const { return createdAt; }
-    vector<string> getActiveJobPostings() const { return activeJobPostings; }
+    std::vector<std::string> getActiveJobPostings() const { return activeJobPostings; }
 };
 
 #endif
