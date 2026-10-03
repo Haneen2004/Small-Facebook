@@ -10,20 +10,20 @@ class Page
 {
 private:
     int pageId{0};
-    string name;
-    string description;
-    string type;
+    std::string name;
+    std::string description;
+    std::string type;
     int totalMembers{0};
-    vector<Recommendation> recommendations;
+    std::vector<Recommendation> recommendations;
     bool active{true};
 
 public:
     Page() = default;
-    Page(int id, string n) : pageId(id), name(move(n)) {}
+    Page(int id, std::string n) : pageId(id), name(std::move(n)) {}
 
     int getPageId() const { return pageId; }
-    string getName() const { return name; }
-    string getDescription() const { return description; }
+    std::string getName() const { return name; }
+    std::string getDescription() const { return description; }
     int getTotalMembers() const { return totalMembers; }
 
     bool isActive() const { return active; }
@@ -34,7 +34,7 @@ public:
         recommendations.push_back(rec);
     }
 
-    vector<Recommendation> getRecommendations() const
+    std::vector<Recommendation> getRecommendations() const
     {
         return recommendations;
     }
