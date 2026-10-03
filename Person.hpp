@@ -10,25 +10,25 @@
 class Person : public Account
 {
 private:
-    string name;
+    std::string name;
     Address address;
-    string email;
-    string phone;
+    std::string email;
+    std::string phone;
 
 public:
     virtual ~Person() = default;
 
-    string getName() const { return name; }
-    void setName(const string &newName) { name = newName; }
+    std::string getName() const { return name; }
+    void setName(const std::string &newName) { name = newName; }
 
     Address getAddress() const { return address; }
     void setAddress(const Address &addr) { address = addr; }
 
-    string getEmail() const { return email; }
-    void setEmail(const string &newEmail) { email = newEmail; }
+    std::string getEmail() const { return email; }
+    void setEmail(const std::string &newEmail) { email = newEmail; }
 
-    string getPhone() const { return phone; }
-    void setPhone(const string &newPhone) { phone = newPhone; }
+    std::string getPhone() const { return phone; }
+    void setPhone(const std::string &newPhone) { phone = newPhone; }
 };
 
 #endif
