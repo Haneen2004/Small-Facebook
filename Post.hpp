@@ -4,7 +4,6 @@
 #pragma once
 #include <string>
 #include <memory>
-using namespace std;
 
 class Member;
 
@@ -12,21 +11,21 @@ class Post
 {
 private:
     int postId{0};
-    string text;
+    std::string text;
     int totalLikes{0};
     int totalShares{0};
-    shared_ptr<Member> owner;
+    std::shared_ptr<Member> owner;
 
 public:
     Post() = default;
-    Post(int id, string txt, shared_ptr<Member> author)
-        : postId(id), text(move(txt)), owner(move(author)) {}
+    Post(int id, std::string txt, std::shared_ptr<Member> author)
+        : postId(id), text(std::move(txt)), owner(std::move(author)) {}
 
     int getPostId() const { return postId; }
-    string getText() const { return text; }
+    std::string getText() const { return text; }
     int getTotalLikes() const { return totalLikes; }
     int getTotalShares() const { return totalShares; }
-    shared_ptr<Member> getOwner() const { return owner; }
+    std::shared_ptr<Member> getOwner() const { return owner; }
 };
 
 #endif
