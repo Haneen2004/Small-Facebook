@@ -10,13 +10,13 @@
 class Profile
 {
 private:
-    vector<uint8_t> profilePicture;
-    vector<uint8_t> coverPhoto;
-    string gender;
-    vector<Work> workExperiences;
-    vector<string> educations;
-    vector<string> places;
-    vector<string> stats;
+    std::vector<uint8_t> profilePicture;
+    std::vector<uint8_t> coverPhoto;
+    std::string gender;
+    std::vector<Work> workExperiences;
+    std::vector<std::string> educations;
+    std::vector<std::string> places;
+    std::vector<std::string> stats;
 
 public:
     Profile() = default;
@@ -27,21 +27,21 @@ public:
         return true;
     }
 
-    bool addEducation(const string &education)
+    bool addEducation(const std::string &education)
     {
         educations.push_back(education);
         return true;
     }
 
-    bool addPlace(const string &place)
+    bool addPlace(const std::string &place)
     {
         places.push_back(place);
         return true;
     }
 
-    vector<Work> getWorkExperiences() const { return workExperiences; }
-    vector<string> getEducations() const { return educations; }
-    vector<string> getPlaces() const { return places; }
+    std::vector<Work> getWorkExperiences() const { return workExperiences; }
+    std::vector<std::string> getEducations() const { return educations; }
+    std::vector<std::string> getPlaces() const { return places; }
 };
 
 #endif
