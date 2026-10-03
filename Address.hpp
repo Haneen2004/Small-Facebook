@@ -3,37 +3,36 @@
 
 #pragma once
 #include <string>
-using namespace std;
 
 class Address
 {
 private:
-    string streetAddress;
-    string city;
-    string state;
-    string zipCode;
-    string country;
+    std::string streetAddress;
+    std::string city;
+    std::string state;
+    std::string zipCode;
+    std::string country;
 
 public:
     Address() = default;
-    Address(string street, string cty, string st, string zip, string cntry)
+    Address(std::string street, std::string cty, std::string st, std::string zip, std::string cntry)
         : streetAddress(move(street)), city(move(cty)), state(move(st)),
           zipCode(move(zip)), country(move(cntry)) {}
 
-    string getStreetAddress() const { return streetAddress; }
-    void setStreetAddress(const string &street) { streetAddress = street; }
+    std::string getStreetAddress() const { return streetAddress; }
+    void setStreetAddress(const std::string &street) { streetAddress = street; }
 
-    string getCity() const { return city; }
-    void setCity(const string &cty) { city = cty; }
+    std::string getCity() const { return city; }
+    void setCity(const std::string &cty) { city = cty; }
 
-    string getState() const { return state; }
-    void setState(const string &st) { state = st; }
+    std::string getState() const { return state; }
+    void setState(const std::string &st) { state = st; }
 
-    string getZipCode() const { return zipCode; }
-    void setZipCode(const string &zip) { zipCode = zip; }
+    std::string getZipCode() const { return zipCode; }
+    void setZipCode(const std::string &zip) { zipCode = zip; }
 
-    string getCountry() const { return country; }
-    void setCountry(const string &cntry) { country = cntry; }
+    std::string getCountry() const { return country; }
+    void setCountry(const std::string &cntry) { country = cntry; }
 };
 
 #endif
