@@ -83,9 +83,11 @@ classDiagram
     Member "1" *-- "1" Profile
 ```
 
-2. "People You May Know" Graph Topology (2-Level BFS)
+### 2. "People You May Know" Graph Topology (2-Level BFS)
 
 The recommendation algorithm traverses the target user's direct friends (Level 1) to evaluate their friends (Level 2). Mutual connection intersections are aggregated to rank recommendations.
+
+```mermaid
 graph LR
     Target[Target Member: Ahmed] <-->|Direct Connection| L1_A(Mona - Level 1)
     Target <-->|Direct Connection| L1_B(Ali - Level 1)
@@ -95,8 +97,8 @@ graph LR
     L1_B <-->|Mutual Path 2| Rec
     
     style Rec fill:#2b82c5,color:#fff,stroke:#1a4971,stroke-width:2px
-
-3. Connection Suggestion Execution Flow
+```
+###3. Connection Suggestion Execution Flow
 ```mermaid
 sequenceDiagram
     autonumber
@@ -165,12 +167,13 @@ graph TD
 ├── Work.hpp                        # Career profile entry
 ├── main.cpp                        # Test suite and interactive scenario driver
 └── README.md                       # Project documentation
-
+```
 🛠 Building & Running Small Facebook
 Prerequisites
 
     A C++17 compatible compiler (g++ 7+, clang++ 5+, or MSVC 2017+)
 
 Direct Terminal Compilation
+```
     g++ -std=c++17 main.cpp -I. -o small_facebook
     ./small_facebook
