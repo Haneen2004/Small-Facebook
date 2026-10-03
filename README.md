@@ -1,14 +1,14 @@
 # Small Facebook 🚀
 
-A high-performance, modular C++17 object-oriented backend application that simulates core social media functionalities inspired by Facebook. The project models complex user relationships, social interactions, media publishing, search indexing, and administrative account controls using Clean Architecture principles and Modern C++ standards.
+A high-performance, modular C++ object-oriented backend application that simulates core social media functionalities inspired by Facebook. The project models complex user relationships, social interactions, media publishing, search indexing, and administrative account controls using Clean Architecture principles and Modern C++ standards.
 
 ---
 
 ## 📝 Description
 
-**Small Facebook** is a system design project aimed at modeling a large-scale social networking platform from scratch using pure C++. 
+**Small Facebook** is a system design project aimed at modeling a social networking platform from scratch using pure C++. 
 
-Instead of relying on heavy external database management systems, this project implements a low-latency, **In-Memory Graph Data Structure** to represent complex social networks. It features a custom **2-Level Breadth-First Search (BFS)** algorithm that analyzes mutual connection paths to deliver highly accurate friend recommendations—similar to Facebook's "People You May Know" algorithm.
+Instead of relying on heavy external database management systems, this project implements a low-latency, **In-Memory Graph Data Structure** to represent complex social networks.
 
 The system is designed with strict adherence to **Object-Oriented Programming (OOP)**, **SOLID principles**, and memory safety using smart pointers (`std::shared_ptr`), providing an enterprise-grade architecture suitable for technical review and system design case studies.
 
@@ -16,7 +16,7 @@ The system is designed with strict adherence to **Object-Oriented Programming (O
 
 ## ✨ Key Features
 
-- **2-Level BFS Recommendation Engine:** Real-time graph algorithm prioritizing member suggestions based on mutual connection counts.
+- **Recommendation Engine:** Real-time graph algorithm prioritizing member suggestions based on mutual connection counts.
 - **In-Memory Network Graph:** Ultra-fast $O(1)$ relationship lookups via `std::unordered_map` and `std::unordered_set`.
 - **Role-Based Access Control:** Administrative oversight (`Admin`) capable of enforcing security actions (blocking/unblocking accounts, enabling/disabling pages).
 - **Search Engine Indexing:** Decoupled search interface (`Search`) providing fast lookups for members, pages, groups, and posts.
@@ -83,7 +83,7 @@ classDiagram
     Member "1" *-- "1" Profile
 ```
 
-### 2. "People You May Know" Graph Topology (2-Level BFS)
+### 2. "People You May Know" Graph Topology 
 
 The recommendation algorithm traverses the target user's direct friends (Level 1) to evaluate their friends (Level 2). Mutual connection intersections are aggregated to rank recommendations.
 
@@ -155,7 +155,7 @@ graph TD
 ├── ConnectionInvitationStatus.hpp  # Status enum for connection requests
 ├── ForwardDeclarations.hpp         # System-wide type forward declarations
 ├── Group.hpp                       # Member communities entity
-├── Member.hpp                      # Main user entity & BFS recommendation logic
+├── Member.hpp                      # Main user entity & recommendation logic
 ├── Message.hpp                     # Direct messaging entity
 ├── Page.hpp                        # Public social pages entity
 ├── Person.hpp                      # Personal details domain class
@@ -165,7 +165,8 @@ graph TD
 ├── Search.hpp                      # Abstract search interface
 ├── SearchIndex.hpp                 # In-memory search index implementation
 ├── Work.hpp                        # Career profile entry
-├── main.cpp                        # Test suite and interactive scenario driver
+├── main.cpp                        # Main application entry point and demonstration
+├── test.cpp                        # Test scenarios for core system functionality
 └── README.md                       # Project documentation
 ```
 🛠 Building & Running Small Facebook
