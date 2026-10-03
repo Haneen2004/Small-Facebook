@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <memory>
-using namespace std;
 
 class Member;
 class Group;
@@ -16,10 +15,10 @@ class Search
 {
 public:
     virtual ~Search() = default;
-    virtual vector<shared_ptr<Member>> searchMember(const string &name) = 0;
-    virtual vector<shared_ptr<Group>> searchGroup(const string &name) = 0;
-    virtual vector<shared_ptr<Page>> searchPage(const string &name) = 0;
-    virtual vector<shared_ptr<Post>> searchPost(const string &word) = 0;
+    virtual std::vector<std::shared_ptr<Member>> searchMember(const std::string &name) = 0;
+    virtual std::vector<std::shared_ptr<Group>> searchGroup(const std::string &name) = 0;
+    virtual std::vector<std::shared_ptr<Page>> searchPage(const std::string &name) = 0;
+    virtual std::vector<std::shared_ptr<Post>> searchPost(const std::string &word) = 0;
 };
 
 #endif
